@@ -30,7 +30,7 @@ class DataGenerator(object):
     self.params = params
     self.target_size = target_size
     self.idg = ImageDataGeneratorCustom(**params)
-    self.data_path = data_path + '/'
+    self.data_path = data_path
     self.train_csv = train_csv
     self.val_csv = val_csv
 
