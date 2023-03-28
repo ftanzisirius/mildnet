@@ -75,16 +75,3 @@ def write_file_and_backup(content, job_dir, filepath):
         f.write(content)
     if job_dir.startswith("gs://"):
         backup_file(job_dir, filepath)
-
-
-def print_trainable_counts(model):
-    trainable_count = int(
-        np.sum([K.count_params(p) for p in set(model.trainable_weights)]))
-    non_trainable_count = int(
-        np.sum([K.count_params(p) for p in set(model.non_trainable_weights)]))
-
-    logging.info('Total params: {:,}'.format(trainable_count + non_trainable_count))
-    logging.info('Trainable params: {:,}'.format(trainable_count))
-    logging.info('Non-trainable params: {:,}'.format(non_trainable_count))
-
-    return trainable_count, non_trainable_count
