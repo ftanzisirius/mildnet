@@ -1,7 +1,5 @@
 import csv
 import six
-
-import time
 import warnings
 import io
 
@@ -10,7 +8,7 @@ from collections import Iterable
 
 from .utils import *
 from .accuracy import *
-from time import time
+
 from tensorflow.python.lib.io import file_io
 from .datagen import ImageDataGeneratorCustom
 import logging
@@ -204,42 +202,6 @@ class ModelCheckpoint(tf.keras.callbacks.Callback):
         if self.job_dir.startswith("gs://"):
             if os.path.exists(filepath): 
                 backup_file(self.job_dir, filepath)
-
-
-class HyperdashCallback(tf.keras.callbacks.Callback):
-    """_KerasCallback implement KerasCallback using an injected Experiment.
-    
-    # TODO: Decide if we want to handle the additional callbacks:
-    # 1) on_epoch_begin
-    # 2) on_batch_begin
-    # 3) on_batch_end
-    # 4) on_train_begin
-    # 5) on_train_end
-    """
-    def __init__(self, exp):
-        super(HyperdashCallback, self).__init__()
-        self.last_time = time()
-        self._exp = exp
-    
-    def on_epoch_end(self, epoch, logs=None):
-        if not logs:
-            logs = {}
-        acc = logs.get("accuracy")
-        loss = logs.get("loss")
-        val_acc = logs.get("val_accuracy")
-        val_loss = logs.get("val_loss")
-
-        if acc is not None:
-            self._exp.metric("accuracy", acc)
-        if loss is not None:
-            self._exp.metric("loss", loss)
-        if val_acc is not None:
-            self._exp.metric("val_accuracy", val_acc)
-        if val_loss is not None:
-            self._exp.metric("val_loss", val_loss)
-        self._exp.metric("mins_per_epoch", (time()-self.last_time)//60)
-        self.last_time = time()
-        self._exp.metric("current_epoch", epoch+1)
 
 
 class TestAccuracy(tf.keras.callbacks.Callback):

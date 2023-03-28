@@ -9,7 +9,6 @@ setup(name='trainer',
       license='MIT',
       install_requires=[
           # 'tensorflow==1.10',
-          'hyperdash',
           'pillow',
           # 'keras==2.0.4',
           'h5py'

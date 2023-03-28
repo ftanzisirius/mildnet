@@ -1,8 +1,4 @@
 source settings.cfg
-echo $HYPERDASH_KEY
-if [[ -z "$HYPERDASH_KEY" ]]; then
-    echo "Enable to find HYPERDASH_KEY in environment! Disabling hyperdash." 1>&2
-fi
 
 source $1
 gcloud ai-platform jobs submit training $2 \
@@ -20,5 +16,4 @@ gcloud ai-platform jobs submit training $2 \
 --val-csv=$val_csv \
 --train-epocs=$train_epocs \
 --batch-size=$batch_size \
---lr=$lr \
---hyperdash-key=$HYPERDASH_KEY
+--lr=$lr

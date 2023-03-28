@@ -28,7 +28,6 @@ The base of such a system is a CNN extracting key features from product images a
 -- MILDNET_JOB_DIR (**mandatory**): Requires directory path to store training outputs. Either pass path of local directory or Google cloud storage (gs://.....)
 -- MILDNET_REGION (**optional**): Only needed when running on ML Engine (e.g. us-east1)
 -- MILDNET_DATA_PATH (**mandatory**): Path where training data is stored. Change only when using custom data.
--- HYPERDASH_KEY: Hyperdash is a nice tool to log system out or to track training metrics. One can easily monitor all the jobs running using their Android app or webpage.
 - [job_configs](job_configs): Contains 25 configs defines the basic job configs like the training model architecture, loss function, optimizer, number of epoch, learning rate etc.
 - [trainer](trainer): Contains all script needed for training.
 - [training_configs](training_configs): Training related environment config, only needed when running on ML Engine. Defines the cluster type, gpu type etc.
@@ -107,7 +106,6 @@ Set below configs in settings.cfg:
 - MILDNET_JOB_DIR=gs://....
 - MILDNET_REGION=us-east1
 - MILDNET_DATA_PATH=gs://fynd-open-source/research/MILDNet/
-- HYPERDASH_KEY=your_hyperdash_key
 
 ## Run Training on Custom Job Config
 
@@ -125,8 +123,6 @@ Set below configs in settings.cfg:
 - Check tensorboard of ongoing training using:
     <pre><code>tensorboard --logdir=gs://fynd-open-source/research/MILDNet/top_jobs/{{job_name}} --port=8080
     </code></pre>
-    
-- Hyperdash: Either use [Hyperdash Website](https://hyperdash.io/dashboard/models) or [Android App](https://play.google.com/store/apps/details?id=com.hyperdash)/[iOS App](https://itunes.apple.com/us/app/hyperdash-machine-learning-monitoring/id1257582233) to monitor logs.
 
 ## Contributing
 
@@ -151,4 +147,3 @@ This project is licensed under the Apache License - see the [LICENSE.txt](LICENS
 * [Annoy](https://github.com/spotify/annoy): Easy to use and fast Approximate Nearest Neighbour library.
 * [convnets-keras](https://github.com/heuritech/convnets-keras): Github repo contains Alexnet implementation on Keras, helped us to evaluate Alexnet base models as presented in [this](https://arxiv.org/abs/1404.4661) research work.
 * [image-similarity-deep-ranking](https://github.com/akarshzingade/image-similarity-deep-ranking): Github repo helped us to use triplet data in keras.
-* [Hyperdash](https://hyperdash.io/): Free monitoring tool for ML tasks.
