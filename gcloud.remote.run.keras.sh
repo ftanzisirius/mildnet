@@ -5,7 +5,7 @@ if [[ -z "$HYPERDASH_KEY" ]]; then
 fi
 
 source $1
-gcloud ml-engine jobs submit training $2 \
+gcloud ai-platform jobs submit training $2 \
 --module-name=trainer.task \
 --package-path=trainer/ \
 --job-dir=$MILDNET_JOB_DIR$2 \
