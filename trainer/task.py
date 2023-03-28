@@ -18,10 +18,10 @@ import pandas as pd
 import dill
 from hyperdash import Experiment
 from tensorflow.keras.callbacks import TensorBoard
-import logging
 import tensorflow.compat.v1.keras.backend as K
 import tensorflow as tf
 tf.compat.v1.disable_eager_execution()
+import logging
 
 
 def main(job_dir, data_path, model_id, weights_path, loss, train_csv, val_csv, batch_size, train_epocs, optimizer, is_tpu, lr, hyperdash_key, **args):
