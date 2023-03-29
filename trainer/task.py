@@ -1,8 +1,6 @@
 from __future__ import absolute_import
 from __future__ import print_function
 
-from keras import Model
-
 needs_reproducible = True
 if needs_reproducible:
     from numpy.random import seed
@@ -21,6 +19,9 @@ import argparse
 import pandas as pd
 import dill
 from tensorflow.keras.callbacks import TensorBoard
+import tensorflow.compat.v1.keras.backend as K
+import tensorflow as tf
+tf.compat.v1.disable_eager_execution()
 import logging
 
 
@@ -72,7 +73,6 @@ def main(job_dir, data_path, model_id, weights_path, loss, train_csv, val_csv, b
         model.load_weights("weights.h5")
 
     # model = multi_gpu_model(model, gpus=4)
-    tf.compat.v1.disable_eager_execution()
     if optimizer == "mo":
         model.compile(loss=_loss_tensor,
                       optimizer=tf.compat.v1.train.MomentumOptimizer(learning_rate=lr, momentum=0.9, use_nesterov=True),
