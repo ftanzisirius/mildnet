@@ -8,7 +8,7 @@ from collections import Iterable
 
 from .utils import *
 from .accuracy import *
-
+import numpy as np
 from tensorflow.python.lib.io import file_io
 from .datagen import ImageDataGeneratorCustom
 import logging
