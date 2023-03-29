@@ -1,10 +1,7 @@
 from tensorflow.python.lib.io import file_io
 import os
-import numpy as np
-from tensorflow.keras import backend as K
 import zipfile
 from .datagen import ImageDataGeneratorCustom
-import logging
 
 
 def downloads_training_images(data_path, is_cropped=False):

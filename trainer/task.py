@@ -1,6 +1,8 @@
 from __future__ import absolute_import
 from __future__ import print_function
 
+from keras import Model
+
 needs_reproducible = True
 if needs_reproducible:
     from numpy.random import seed
@@ -76,7 +78,9 @@ def main(job_dir, data_path, model_id, weights_path, loss, train_csv, val_csv, b
                       optimizer=tf.compat.v1.train.MomentumOptimizer(learning_rate=lr, momentum=0.9, use_nesterov=True),
                       metrics=[accuracy])
     elif optimizer == "rms":
-        model.compile(loss=_loss_tensor, optimizer=tf.compat.v1.train.RMSPropOptimizer(lr), metrics=[accuracy])
+        model.compile(loss=_loss_tensor,
+                      optimizer=tf.compat.v1.train.RMSPropOptimizer(lr),
+                      metrics=[accuracy])
     else:
         logging.error("Optimizer not supported")
         return
