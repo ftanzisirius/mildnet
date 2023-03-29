@@ -74,12 +74,14 @@ def main(job_dir, data_path, model_id, weights_path, loss, train_csv, val_csv, b
 
     # model = multi_gpu_model(model, gpus=4)
     if optimizer == "mo":
+        tf.compat.v1.disable_eager_execution()
         model.compile(loss=_loss_tensor,
                       optimizer=tf.compat.v1.train.MomentumOptimizer(learning_rate=lr, momentum=0.9, use_nesterov=True),
                       metrics=[accuracy]
                       )
         model.run_eagerly = True
     elif optimizer == "rms":
+        tf.compat.v1.disable_eager_execution()
         model.compile(loss=_loss_tensor,
                       optimizer=tf.compat.v1.train.RMSPropOptimizer(lr),
                       metrics=[accuracy]
